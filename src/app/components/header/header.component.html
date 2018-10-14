@@ -1,0 +1,22 @@
+<nav class="navbar is-blue">
+    <!-- logo -->
+    <div class="navbar-brand">
+      <a routerLink="home" class="navbar-item" [ngClass]="{'is-wide': !active}">
+          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+      </a>
+      <a role="button" class="navbar-burger" [ngClass]="{'is-active': active}" aria-label="menu" aria-expanded="false" (click)="activateMenu()">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu" [ngClass]="{'is-active': active}">
+      <div class="navbar-start">
+        <a routerLink="inventario" class="navbar-item" [ngClass]="{'is-wide': !active}">Inventario</a>
+        <a routerLink="" class="navbar-item" [ngClass]="{'is-wide': !active}">Ingresar alquiler</a>
+        <a routerLink="" class="navbar-item" [ngClass]="{'is-wide': !active}">Mantenimiento</a>
+        <a routerLink="" class="navbar-item" [ngClass]="{'is-wide': !active}">Clientes</a>
+      </div>
+      
+    </div>
+  </nav>
