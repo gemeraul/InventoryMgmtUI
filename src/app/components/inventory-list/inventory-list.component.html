@@ -1,33 +1,60 @@
-<section class="hero top-banner">
-    <div class="container ">
-      <div class="columns ">
-        <div class="column ">
-          <h1 class="title quote">Inventario de vehiculos</h1>
-        </div>
-      </div>
-      <div class="columns separation-bottom">
-        <div class="column ">
-          <mat-accordion class="example-headers-align">
-
-              <mat-expansion-panel *ngFor="let item of items; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    {{item.name}}
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    {{item.status}}
-                    <mat-icon>local_shipping</mat-icon>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-  
-                Some other info...
-
-              </mat-expansion-panel>            
-  
-          </mat-accordion>
-        </div>
+<section class="hero">
+  <div class="container ">
+    <div class="columns ">
+      <div class="column ">
+        <h1 class="title quote">Resumen de productos</h1>
       </div>
     </div>
-  
-  
-  </section>
+    <div class="columns separation-bottom">
+      <div class="column ">
+        <h2 class="">Camiones</h2>
+      </div>
+      <div class="column ">
+        <h2 class="">Camiones</h2>
+      </div>
+      <div class="column ">
+        <h2 class="">Camiones</h2>
+      </div>
+      <div class="column ">
+        <h2 class="">Camiones</h2>
+      </div>
+      <div class="column ">
+        <h2 class="">Camiones</h2>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="hero">
+  <div class="container ">
+    <div class="columns ">
+      <div class="column ">
+        <h1 class="title quote">Inventario de vehículos</h1>
+      </div>
+    </div>
+    <div class="columns separation-bottom">
+      <div class="column ">
+        <mat-accordion class="example-headers-align">
+
+          <mat-expansion-panel *ngFor="let item of items; let i = index" [expanded]="step === i" (opened)="setStep(i)"
+            hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{item.name}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{item.status}}
+                <mat-icon>local_shipping</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            Some other info...
+
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+
+
+</section>

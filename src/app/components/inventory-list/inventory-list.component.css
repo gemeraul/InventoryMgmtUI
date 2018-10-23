@@ -7,3 +7,10 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.quote {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5em;
+  font-weight: 100;
+  cursor: default;
+}
