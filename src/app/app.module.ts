@@ -14,16 +14,19 @@ import {
   MatIconModule,
   MatStepperModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatDividerModule
 } from '@angular/material';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InventoryListComponent,
     HeaderComponent,
-    AlquilerComponent
+    AlquilerComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { AlquilerComponent } from './components/alquiler/alquiler.component';
     MatStepperModule,
     MatInputModule,
     MatButtonModule,
+    MatDividerModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule
