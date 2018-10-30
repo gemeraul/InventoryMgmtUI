@@ -15,7 +15,8 @@ import {
   MatStepperModule,
   MatInputModule,
   MatButtonModule,
-  MatDividerModule
+  MatDividerModule,
+  MatTableModule
 } from '@angular/material';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { HomeComponent } from './components/home/home.component';
@@ -39,6 +40,7 @@ import { HomeComponent } from './components/home/home.component';
     MatInputModule,
     MatButtonModule,
     MatDividerModule,
+    MatTableModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule

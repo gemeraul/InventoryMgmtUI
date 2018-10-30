@@ -1,25 +1,22 @@
 <section class="hero">
   <div class="container ">
     <div class="columns ">
-      <div class="column ">
+      <div class="column has-text-centered">
         <h1 class="title quote">Resumen de productos</h1>
       </div>
     </div>
     <div class="columns separation-bottom">
-      <div class="column ">
-        <h2 class="">Camiones</h2>
+      <div class="column has-text-centered">
+        <h2 class="">Total vehiculos</h2>
+        <h1 class="main-number">{{totalVehiculos}}</h1>
       </div>
-      <div class="column ">
-        <h2 class="">Camiones</h2>
+      <div class="column has-text-centered has-borders">
+        <h2 class="">Vehiculos alquilados</h2>
+        <h1 class="main-number">{{vehiculosAlquilados}}</h1>
       </div>
-      <div class="column ">
-        <h2 class="">Camiones</h2>
-      </div>
-      <div class="column ">
-        <h2 class="">Camiones</h2>
-      </div>
-      <div class="column ">
-        <h2 class="">Camiones</h2>
+      <div class="column has-text-centered">
+        <h2 class="">Vehiculos para revision</h2>
+        <h1 class="main-number">{{totalMant}}</h1>
       </div>
     </div>
   </div>
@@ -27,16 +24,56 @@
 <section class="hero">
   <div class="container ">
     <div class="columns ">
-      <div class="column ">
+      <div class="column has-text-centered">
         <h1 class="title quote">Inventario de vehículos</h1>
       </div>
     </div>
-    <div class="columns separation-bottom">
+    <div class="columns">
+      <div class="column has-text-centered">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="columns separation">
       <div class="column ">
-        <mat-accordion class="example-headers-align">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+          </ng-container>
 
-          <mat-expansion-panel *ngFor="let item of items; let i = index" [expanded]="step === i" (opened)="setStep(i)"
-            hideToggle>
+          <!-- Name Column -->
+          <ng-container matColumnDef="tipo">
+            <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.tipo}} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="cliente">
+            <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.cliente}} </mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="diasEnUso">
+            <mat-header-cell *matHeaderCellDef> Dias en uso </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.diasEnUso}} </mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="proxMant">
+            <mat-header-cell *matHeaderCellDef> Proximo Mantenimiento </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.proxMant | date}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <!-- <mat-accordion class="example-headers-align">
+
+          <mat-expansion-panel *ngFor="let item of items; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{item.name}}
@@ -51,7 +88,7 @@
 
           </mat-expansion-panel>
 
-        </mat-accordion>
+        </mat-accordion> -->
       </div>
     </div>
   </div>

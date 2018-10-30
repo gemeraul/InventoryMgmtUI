@@ -14,3 +14,30 @@
   font-weight: 100;
   cursor: default;
 }
+
+h1.main-number {
+  font-size: 4em;
+  font-family: Roboto,sans-serif;
+  font-weight: 100;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-family: Roboto,sans-serif;
+  font-weight: 300;
+}
+
+h1.quote {
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+
+.separation {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.has-borders {
+  border-right: 1px solid #b5aaaa;
+  border-left: 1px solid #b5aaaa;
+}
