@@ -27,6 +27,13 @@ h2 {
   font-weight: 300;
 }
 
+h3 {
+  font-size: .8em;
+  font-family: Roboto,sans-serif;
+  font-weight: 300;
+  margin: 0;
+}
+
 h1.quote {
   margin-top: 1em;
   margin-bottom: .5em;

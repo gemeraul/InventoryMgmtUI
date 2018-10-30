@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
+// Services
+import { ItemCardModalService } from '../../services/item-card-modal.service';
+
 export interface Vehiculo {
   id: number;
   tipo: string;
@@ -48,7 +51,7 @@ export class InventoryListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'tipo', 'cliente', 'diasEnUso', 'proxMant'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor() { }
+  constructor(private itemCardModalService: ItemCardModalService) { }
 
   ngOnInit() {
   }
@@ -58,5 +61,17 @@ export class InventoryListComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+
+  openItemCardDialog(item) {
+    this.itemCardModalService.openModal({
+      id: item.id,
+      tipo: item.tipo,
+      alquilado: item.alquilado
+    }).afterClosed().subscribe(result => {
+      console.log('Item card dialog closed');
+    });
+  }
+
+
 
 }

@@ -26,12 +26,13 @@
     <div class="columns ">
       <div class="column has-text-centered">
         <h1 class="title quote">Inventario de vehículos</h1>
+        <h3 class="title">Seleccione un vehiculo para ver detalles</h3>
       </div>
     </div>
     <div class="columns">
       <div class="column has-text-centered">
         <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
         </mat-form-field>
       </div>
     </div>
@@ -41,31 +42,31 @@
           <!-- Position Column -->
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)"> {{element.id}} </mat-cell>
           </ng-container>
 
           <!-- Name Column -->
           <ng-container matColumnDef="tipo">
             <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.tipo}} </mat-cell>
+            <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)"> {{element.tipo}} </mat-cell>
           </ng-container>
 
           <!-- Weight Column -->
           <ng-container matColumnDef="cliente">
             <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.cliente}} </mat-cell>
+            <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)"> {{element.cliente}} </mat-cell>
           </ng-container>
 
           <!-- Symbol Column -->
           <ng-container matColumnDef="diasEnUso">
             <mat-header-cell *matHeaderCellDef> Dias en uso </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.diasEnUso}} </mat-cell>
+            <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)"> {{element.diasEnUso}} </mat-cell>
           </ng-container>
 
           <!-- Symbol Column -->
           <ng-container matColumnDef="proxMant">
             <mat-header-cell *matHeaderCellDef> Proximo Mantenimiento </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.proxMant | date}} </mat-cell>
+            <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)"> {{element.proxMant | date}} </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

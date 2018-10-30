@@ -1,0 +1,47 @@
+.photo {
+    background-color: #cdcdcd;
+    height: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+div.photo mat-icon {
+    position: absolute;
+    font-size: 72px;
+    top: calc(50% - 37.5px);
+    left: calc(30.66% - 37.5px);
+    color: #959595;
+}
+
+div.photo mat-spinner {
+    position: absolute;
+    top: 50vh;
+    left: 50vh;
+}
+
+.photo p {
+    padding-top: .5em;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+}
+
+div.is-4 {
+    padding-bottom: 0;
+}
+
+p {
+    margin: 5px;
+}
+
+.column button {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.bold {
+    font-weight: bolder;
+}

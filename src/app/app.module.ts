@@ -16,10 +16,13 @@ import {
   MatInputModule,
   MatButtonModule,
   MatDividerModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { HomeComponent } from './components/home/home.component';
+import { ItemCardComponent } from './components/item-card/item-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { HomeComponent } from './components/home/home.component';
     InventoryListComponent,
     HeaderComponent,
     AlquilerComponent,
-    HomeComponent
+    HomeComponent,
+    ItemCardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,11 +45,16 @@ import { HomeComponent } from './components/home/home.component';
     MatButtonModule,
     MatDividerModule,
     MatTableModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ItemCardComponent
+    ], 
 })
 export class AppModule { }
