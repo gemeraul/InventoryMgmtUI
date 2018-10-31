@@ -11,7 +11,8 @@
       <div class="column is-3 has-text-centered example-container">
         <form class="example-container" [formGroup]="formGroup">
           <mat-form-field>
-            <input matInput placeholder="Id vehículo" formControlName="id">
+            <input matInput #idtext placeholder="Id vehículo" formControlName="id" maxlength="10">
+            <mat-hint align="start">{{idtext.value?.length || 0}}/10</mat-hint>
           </mat-form-field>
 
           <mat-form-field>
@@ -23,7 +24,8 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Marca" formControlName="marca">
+            <input matInput #marcatext placeholder="Marca" formControlName="marca" maxlength="15">
+            <mat-hint align="start">{{marcatext.value?.length || 0}}/15</mat-hint>
           </mat-form-field>
 
           <mat-form-field>
@@ -34,12 +36,13 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Cliente/Empresa" formControlName="cliente">
+            <input matInput #clientetext placeholder="Cliente/Empresa" formControlName="cliente" maxlength="15">
+            <mat-hint align="start">{{clientetext.value?.length || 0}}/15</mat-hint>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Prox mantenimiento"
-              formControlName="fechaInicio">
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Prox. mantenimiento"
+              formControlName="proxMant">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
           </mat-form-field>
