@@ -5,6 +5,8 @@ export interface ItemCardParams {
   id: number;
   tipo: string;
   alquilado: boolean;
+  cliente: string;
+  inicioAlquiler: string;
 }
 
 @Component({
@@ -20,7 +22,11 @@ export class ItemCardComponent implements OnInit {
   id: number;
   tipo: string;
   alquilado: boolean;
+  cliente: string;
+  inicioAlquiler: string;
+
   alquiladoText: string;
+  diasUso: any;
 
   constructor(
     @Optional() public matDialogRef: MatDialogRef<ItemCardComponent>,
@@ -30,7 +36,9 @@ export class ItemCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.alquiladoText = this.alquilado ? 'Si' : 'No';
+    this.alquiladoText = this.alquilado ? 'Sí' : 'No';
+    this.diasUso = new Date().getTime() - new Date(this.inicioAlquiler).getTime();
+    this.diasUso = this.diasUso / 1000 / 60 / 60 / 24;
     this.loadImage();
   }
 

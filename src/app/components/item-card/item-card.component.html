@@ -10,11 +10,11 @@
     <p><span class="bold">Marca: </span> MACK</p>
     <p><span class="bold">Alquilado: </span> {{alquiladoText}}</p>
     <p><span class="bold">Año: </span> 2015</p>
-    <p><span class="bold">Ultimo mantenimiento: </span> Oct 29 2018</p>
-    <p><span class="bold">Proximo mantenimiento:</span> Nov 29 2018</p>
-    <p><span class="bold">Dias en uso: </span> 345</p>
-    <p><span class="bold">Cliente actual: </span>Pizza Hut</p>
-    <p><span class="bold">Descripcion: </span> Camion tipo volqueta. 400 caballos de potencia, motor 7
+    <p><span class="bold">Último mantenimiento: </span> Oct 29 2018</p>
+    <p><span class="bold">Próximo mantenimiento:</span> Nov 29 2018</p>
+    <p><span class="bold">Días en uso: </span>{{diasUso | number:'1.0-0'}}</p>
+    <p><span class="bold">Cliente actual: </span>{{cliente}}</p>
+    <p><span class="bold">Descripción: </span> Camion tipo volqueta. 400 caballos de potencia, motor 7
       cilindros twin turbo. Serie GT aros de lujo. Capacidad de 5 000 metros cubicos.</p>
     <button *ngIf="!alquilado" mat-raised-button color="primary">Nuevo alquiler</button>
     <button mat-raised-button color="accent">Nuevo mantenimiento</button>

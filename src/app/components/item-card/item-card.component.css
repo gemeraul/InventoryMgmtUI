@@ -8,17 +8,10 @@
 }
 
 div.photo mat-icon {
-    position: absolute;
     font-size: 72px;
-    top: calc(50% - 37.5px);
-    left: calc(30.66% - 37.5px);
+    padding-top: 50%;
+    padding-right: 25%;
     color: #959595;
-}
-
-div.photo mat-spinner {
-    position: absolute;
-    top: 50vh;
-    left: 50vh;
 }
 
 .photo p {

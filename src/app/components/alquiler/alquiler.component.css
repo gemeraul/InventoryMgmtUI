@@ -1,0 +1,30 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.example-container > * {
+    width: 100%;
+}
+
+.quote {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5em;
+    font-weight: 100;
+    cursor: default;
+}
+
+.separation {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 1em;
+    font-family: Roboto,sans-serif;
+    font-weight: 300;
+}
+
+.example-container button {
+    margin-top: 1em;
+}

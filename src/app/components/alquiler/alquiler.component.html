@@ -1,44 +1,55 @@
 <section class="hero">
   <div class="container ">
-    <div class="columns ">
-      <div class="column ">
+    <div class="columns is-centered separation">
+      <div class="column has-text-centered is-half">
         <h1 class="title quote">Ingrese detalles de alquiler</h1>
+        <h3 class="title">Formulario para ingreso de nuevo detalle de alquiler</h3>
+        <mat-divider></mat-divider>
       </div>
     </div>
-    <div class="columns separation-bottom">
-      <mat-horizontal-stepper #stepper>
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
-          <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Address" formControlName="secondCtrl" required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          You are now done.
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-step>
-      </mat-horizontal-stepper>
+    <div class="columns is-centered separation-bottom">
+      <div class="column is-3 has-text-centered example-container">
+        <form class="example-container" [formGroup]="formGroup">
+          <mat-form-field>
+            <input matInput placeholder="Id vehículo" formControlName="id">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Año de vehiculo" formControlName="year">
+              <mat-option *ngFor="let option of years" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Marca" formControlName="marca">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Tipo de vehículo" formControlName="tipo">
+              <mat-option value="option">Camion</mat-option>
+              <mat-option value="option">Montacarga</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Cliente/Empresa" formControlName="cliente">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Prox mantenimiento"
+              formControlName="fechaInicio">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" (click)="submit()" [disabled]="!formGroup.valid">Guardar</button>
+
+        </form>
+
+      </div>
+
     </div>
   </div>
 </section>

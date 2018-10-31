@@ -18,8 +18,11 @@ import {
   MatDividerModule,
   MatTableModule,
   MatDialogModule,
-  MatProgressSpinnerModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
+
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { HomeComponent } from './components/home/home.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
@@ -46,7 +49,9 @@ import { ItemCardComponent } from './components/item-card/item-card.component';
     MatDividerModule,
     MatTableModule,
     MatDialogModule,
-    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule
