@@ -27,6 +27,11 @@ import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { HomeComponent } from './components/home/home.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +59,9 @@ import { ItemCardComponent } from './components/item-card/item-card.component';
     MatNativeDateModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent],
