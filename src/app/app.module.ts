@@ -20,7 +20,8 @@ import {
   MatDialogModule,
   MatSelectModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
@@ -57,6 +58,7 @@ import { environment } from '../environments/environment';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

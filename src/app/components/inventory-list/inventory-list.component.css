@@ -48,3 +48,7 @@ h1.quote {
   border-right: 1px solid #b5aaaa;
   border-left: 1px solid #b5aaaa;
 }
+
+.spinner {
+  margin-top: 2em;
+}

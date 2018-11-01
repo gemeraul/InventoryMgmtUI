@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 export interface DetalleAlquiler {
   id: number;
@@ -41,7 +40,7 @@ export class AlquilerComponent implements OnInit {
     // .snapshotChanges() returns a DocumentChangeAction[], which contains
     // a lot of information about "what happened" with each change. If you want to
     // get the data and the id use the map operator.
-    this.items = this.itemsCollection.valueChanges();
+    // this.items = this.itemsCollection.valueChanges();
     // this.items = this.itemsCollection.snapshotChanges().pipe(
     //   map(actions => actions.map(a => {
     //     const data = a.payload.doc.data() as DetalleAlquiler;

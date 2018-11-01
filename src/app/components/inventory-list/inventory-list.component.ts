@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 // Services
 import { ItemCardModalService } from '../../services/item-card-modal.service';
+
+// Models
+import { DetalleAlquiler } from '../alquiler/alquiler.component';
 
 export interface Vehiculo {
   id: number;
@@ -38,7 +43,8 @@ const ELEMENT_DATA: Vehiculo[] = [
   { id: 15, tipo: 'Montacargas', cliente: 'INS', diasEnUso: 45, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/23/2018' },
   {
     id: 16, tipo: 'Montacargas', cliente: 'INS', diasEnUso: 123, alquilado: true,
-    proxMant: '11/29/2018', inicioAlquiler: '10/25/2018' },
+    proxMant: '11/29/2018', inicioAlquiler: '10/25/2018'
+  },
   { id: 17, tipo: 'Camion', cliente: '-', diasEnUso: 0, alquilado: false, proxMant: '11/29/2018', inicioAlquiler: '10/27/2018' },
   { id: 18, tipo: 'Camion', cliente: '-', diasEnUso: 0, alquilado: false, proxMant: '11/29/2018', inicioAlquiler: '10/11/2018' },
   { id: 19, tipo: 'Camion', cliente: 'Toyota', diasEnUso: 54, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/14/2018' },
@@ -53,21 +59,39 @@ const ELEMENT_DATA: Vehiculo[] = [
 
 export class InventoryListComponent implements OnInit {
 
+  // Table settings and variables
   displayedColumns: string[] = ['id', 'tipo', 'cliente', 'diasEnUso', 'proxMant'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource: MatTableDataSource<DetalleAlquiler>;
+  tableData: Array<DetalleAlquiler>;
 
-  totalVehiculos = this.dataSource.data.length;
+  totalVehiculos: any = '-';
   vehiculosAlquilados = 12;
   totalMant = 2;
+  loading: boolean;
 
-  constructor(private itemCardModalService: ItemCardModalService) { }
+  // Firestore variables
+  private itemsCollection: AngularFirestoreCollection<DetalleAlquiler>;
+  items: Observable<any[]>;
+
+  constructor(private itemCardModalService: ItemCardModalService, private db: AngularFirestore) {
+    this.loading = true;
+    this.itemsCollection = db.collection<DetalleAlquiler>('alquiler');
+    this.items = this.itemsCollection.valueChanges();
+    this.items.subscribe(data => {
+      this.tableData = data;
+      this.dataSource = new MatTableDataSource(this.tableData);
+      this.totalVehiculos = this.dataSource.data.length;
+      this.loading = false;
+    })
+
+  }
 
   ngOnInit() {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 
