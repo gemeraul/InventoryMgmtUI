@@ -7,49 +7,7 @@ import { Observable } from 'rxjs';
 import { ItemCardModalService } from '../../services/item-card-modal.service';
 
 // Models
-import { DetalleAlquiler } from '../alquiler/alquiler.component';
-
-export interface Vehiculo {
-  id: number;
-  tipo: string;
-  cliente: string;
-  diasEnUso: number;
-  alquilado: boolean;
-  proxMant: string;
-  inicioAlquiler: string;
-}
-
-const ELEMENT_DATA: Vehiculo[] = [
-  { id: 1, tipo: 'Camion', cliente: 'Coca-Cola', diasEnUso: 45, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/02/2018' },
-  { id: 2, tipo: 'Camion', cliente: 'Toyota', diasEnUso: 50, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/08/2018' },
-  {
-    id: 3, tipo: 'Montacargas', cliente: 'Coca-Cola', diasEnUso: 45, alquilado: true,
-    proxMant: '11/29/2018', inicioAlquiler: '10/22/2018'
-  },
-  { id: 4, tipo: 'Camion', cliente: 'Coca-Cola', diasEnUso: 45, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/23/2018' },
-  { id: 5, tipo: 'Montacargas', cliente: 'INS', diasEnUso: 21, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/12/2018' },
-  { id: 6, tipo: 'Montacargas', cliente: 'INS', diasEnUso: 45, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/11/2018' },
-  { id: 7, tipo: 'Camion', cliente: '-', diasEnUso: 643, alquilado: false, proxMant: '11/29/2018', inicioAlquiler: '10/17/2018' },
-  { id: 8, tipo: 'Camion', cliente: '-', diasEnUso: 45, alquilado: false, proxMant: '11/29/2018', inicioAlquiler: '10/20/2018' },
-  { id: 9, tipo: 'Camion', cliente: 'Toyota', diasEnUso: 34, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/03/2018' },
-  { id: 10, tipo: 'Camion', cliente: 'Coca-Cola', diasEnUso: 745, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/29/2018' },
-  { id: 11, tipo: 'Camion', cliente: 'Coca-Cola', diasEnUso: 12, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/29/2018' },
-  { id: 12, tipo: 'Camion', cliente: 'Toyota', diasEnUso: 45, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/29/2018' },
-  {
-    id: 13, tipo: 'Montacargas', cliente: 'Coca-Cola', diasEnUso: 45, alquilado: true,
-    proxMant: '11/29/2018', inicioAlquiler: '10/21/2018'
-  },
-  { id: 14, tipo: 'Camion', cliente: 'Coca-Cola', diasEnUso: 32, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/21/2018' },
-  { id: 15, tipo: 'Montacargas', cliente: 'INS', diasEnUso: 45, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/23/2018' },
-  {
-    id: 16, tipo: 'Montacargas', cliente: 'INS', diasEnUso: 123, alquilado: true,
-    proxMant: '11/29/2018', inicioAlquiler: '10/25/2018'
-  },
-  { id: 17, tipo: 'Camion', cliente: '-', diasEnUso: 0, alquilado: false, proxMant: '11/29/2018', inicioAlquiler: '10/27/2018' },
-  { id: 18, tipo: 'Camion', cliente: '-', diasEnUso: 0, alquilado: false, proxMant: '11/29/2018', inicioAlquiler: '10/11/2018' },
-  { id: 19, tipo: 'Camion', cliente: 'Toyota', diasEnUso: 54, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/14/2018' },
-  { id: 20, tipo: 'Camion', cliente: 'Coca-Cola', diasEnUso: 23, alquilado: true, proxMant: '11/29/2018', inicioAlquiler: '10/24/2018' },
-];
+import { Vehiculo } from '../alquiler/alquiler.component';
 
 @Component({
   selector: 'app-inventory-list',
@@ -60,27 +18,30 @@ const ELEMENT_DATA: Vehiculo[] = [
 export class InventoryListComponent implements OnInit {
 
   // Table settings and variables
-  displayedColumns: string[] = ['id', 'tipo', 'cliente', 'diasEnUso', 'proxMant'];
-  dataSource: MatTableDataSource<DetalleAlquiler>;
-  tableData: Array<DetalleAlquiler>;
+  displayedColumns: string[] = ['id', 'tipo', 'cliente', 'alquilado', 'diasEnUso', 'proxMant'];
+  dataSource: MatTableDataSource<Vehiculo>;
+  tableData: Array<Vehiculo>;
 
-  totalVehiculos: any = '-';
-  vehiculosAlquilados = 12;
-  totalMant = 2;
+  totalVehiculos = 0;
+  vehiculosAlquilados = 0;
+  totalMant = 0;
   loading: boolean;
+  today = new Date();
 
   // Firestore variables
-  private itemsCollection: AngularFirestoreCollection<DetalleAlquiler>;
+  private itemsCollection: AngularFirestoreCollection<Vehiculo>;
   items: Observable<any[]>;
 
   constructor(private itemCardModalService: ItemCardModalService, private db: AngularFirestore) {
     this.loading = true;
-    this.itemsCollection = db.collection<DetalleAlquiler>('alquiler');
+    this.itemsCollection = db.collection<Vehiculo>('vehiculos');
     this.items = this.itemsCollection.valueChanges();
+    // Raul: We have to subscribe instead of using async pipe because we need to unwrap the observable and convert it to an array to be 
+    // able to use it as a valid datasource for the mat-table. We also need to iterate through it to get the values for summary variables.
     this.items.subscribe(data => {
       this.tableData = data;
       this.dataSource = new MatTableDataSource(this.tableData);
-      this.totalVehiculos = this.dataSource.data.length;
+      this.getSummaryValues();
       this.loading = false;
     })
 
@@ -107,6 +68,20 @@ export class InventoryListComponent implements OnInit {
     });
   }
 
-
+  getSummaryValues() {
+    this.totalVehiculos = this.tableData.length;
+    this.tableData.forEach(item => {
+      if (item.alquilado && (new Date(item.finalAlquiler) >= this.today)) {
+        let diff = this.today.getTime() - new Date(item.inicioAlquiler).getTime();
+        item.diasEnUso = diff / (1000 * 3600 * 24);
+      }
+      if (item.alquilado) {
+        this.vehiculosAlquilados += 1;
+      }
+      if ( (new Date(item.proxMant).getTime() - this.today.getTime() <= 7*1000*3600*24) || new Date(item.proxMant) <= this.today) {
+        this.totalMant += 1;
+      }
+    })
+  }
 
 }

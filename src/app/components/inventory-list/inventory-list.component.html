@@ -1,22 +1,23 @@
 <section class="hero">
   <div class="container ">
     <div class="columns ">
-      <div class="column has-text-centered">
+      <div class="column has-text-centered separation-bottom">
         <h1 class="title quote">Resumen de productos</h1>
+        <h3 class="title">Información actualizada en vivo</h3>
       </div>
     </div>
-    <div class="columns separation-bottom">
+    <div class="columns ">
       <div class="column has-text-centered">
-        <h2 class="">Total vehiculos</h2>
-        <h1 class="main-number">{{totalVehiculos}}</h1>
+        <h2 class="">Total vehículos</h2>
+        <h1 class="main-number">{{totalVehiculos || '-'}}</h1>
       </div>
       <div class="column has-text-centered has-borders">
-        <h2 class="">Vehiculos alquilados</h2>
-        <h1 class="main-number">{{vehiculosAlquilados}}</h1>
+        <h2 class="">Vehículos alquilados</h2>
+        <h1 class="main-number">{{vehiculosAlquilados || '-'}}</h1>
       </div>
       <div class="column has-text-centered">
-        <h2 class="">Vehiculos para revision</h2>
-        <h1 class="main-number">{{totalMant}}</h1>
+        <h2 class="">Vehículos para revisión</h2>
+        <h1 class="main-number">{{totalMant || '-'}}</h1>
       </div>
     </div>
   </div>
@@ -30,9 +31,9 @@
       </div>
     </div>
     <div *ngIf="loading" class="columns is-centered">
-        <div class="column is-1 spinner">
-          <mat-spinner></mat-spinner>
-        </div>
+      <div class="column is-1 spinner">
+        <mat-spinner></mat-spinner>
+      </div>
     </div>
     <div *ngIf="!loading" class="columns">
       <div class="column has-text-centered">
@@ -62,10 +63,19 @@
             <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)"> {{element.cliente}} </mat-cell>
           </ng-container>
 
+          <!-- Weight Column -->
+          <ng-container matColumnDef="alquilado">
+            <mat-header-cell *matHeaderCellDef> Alquilado </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)">
+              <mat-icon class="alquilado" *ngIf="element.alquilado">check</mat-icon>
+              <mat-icon class="libre" *ngIf="!element.alquilado">error_outline</mat-icon>
+            </mat-cell>
+          </ng-container>
+
           <!-- Symbol Column -->
           <ng-container matColumnDef="diasEnUso">
             <mat-header-cell *matHeaderCellDef> Dias en uso </mat-header-cell>
-            <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)"> {{element.diasEnUso}} </mat-cell>
+            <mat-cell *matCellDef="let element" (click)="openItemCardDialog(element)"> {{element.diasEnUso | number: '1.0-0'}} </mat-cell>
           </ng-container>
 
           <!-- Symbol Column -->

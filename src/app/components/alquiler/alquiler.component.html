@@ -48,6 +48,13 @@
             <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
           </mat-form-field>
 
+          <mat-form-field class="example-full-width">
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerf" placeholder="Final Alquiler"
+                formControlName="finalAlquiler">
+              <mat-datepicker-toggle matSuffix [for]="pickerf"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #pickerf disabled="false"></mat-datepicker>
+            </mat-form-field>
+
           <button mat-raised-button color="primary" (click)="submit()" [disabled]="!formGroup.valid">Guardar</button>
 
         </form>

@@ -52,3 +52,17 @@ h1.quote {
 .spinner {
   margin-top: 2em;
 }
+
+mat-cell mat-icon.alquilado {
+  color: green;
+  padding-left: 12px;
+}
+
+mat-cell mat-icon.libre {
+  color: red;
+  font-size: 24px;
+}
+
+.separation-bottom {
+  margin-bottom: 1em;
+}
